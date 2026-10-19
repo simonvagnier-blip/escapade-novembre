@@ -89,6 +89,19 @@
 
   .tag.alt{background:var(--sea)}
   .new{display:inline-block;margin-left:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--sea);border:1px solid var(--sea);border-radius:999px;padding:1px 8px;vertical-align:middle}
+
+  .hl{list-style:none;padding:0;margin:0 0 12px;border-top:1px solid var(--line)}
+  .hl li{padding:10px 0;border-bottom:1px dashed var(--line);display:grid;grid-template-columns:1fr auto;gap:4px 10px}
+  .hl a{color:var(--ink);font-weight:600;font-size:14px;text-decoration:none;border-bottom:1px solid var(--line)}
+  .hl a:hover{color:var(--sea);border-color:var(--sea)}
+  .hl small{grid-column:1;color:var(--muted);font-size:12.5px}
+  .hl .p{text-align:right;font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted);white-space:nowrap}
+  .hl .p b{display:block;font-family:var(--serif);font-weight:500;font-size:19px;color:var(--ink)}
+  .hl .star{color:var(--sun);font-weight:600}
+  .sub{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:4px 0 2px}
+  .fl{font-size:14px;margin:0 0 12px;display:flex;justify-content:space-between;gap:8px}
+  .fl a{color:var(--sea)}
+  .budget{display:inline-block;background:var(--sea-soft);color:var(--sea);font-weight:600;font-size:13px;border-radius:999px;padding:6px 12px;margin:0 0 18px}
 </style>
 </head>
 <body>
@@ -98,7 +111,7 @@
   <div>
     <div class="kicker">Simon &amp; Sonya · novembre 2026</div>
     <h1>Quatre jours au <em>soleil</em>, ou les pieds dans la thalasso&nbsp;?</h1>
-    <p class="lede">Sept idées pour la deuxième semaine de novembre. Chacun vote pour ses préférées, et la page vous dit sur laquelle vous êtes d'accord.</p>
+    <p class="lede">Sept destinations, 15 hôtels avec spa ou thalasso, tous à moins de 1&nbsp;800&nbsp;€ le voyage à deux. Chacun vote pour ses préférées, et la page vous dit sur laquelle vous êtes d'accord.</p>
   </div>
   <div class="week" aria-label="Semaine du 9 au 15 novembre">
     <h3>La semaine</h3>
@@ -115,29 +128,37 @@
   </div>
 </header>
 
+<div class="budget">Budget : 1 800 € maximum, vols compris</div>
 <div class="filters" role="group" aria-label="Filtrer">
   <button class="chip" data-f="all" aria-pressed="true">Tout voir</button>
   <button class="chip" data-f="chaud" aria-pressed="false">Au chaud</button>
   <button class="chip" data-f="thalasso" aria-pressed="false">Vraie thalasso</button>
-  <button class="chip" data-f="budget" aria-pressed="false">Moins de 2 000 €</button>
+  <button class="chip" data-f="budget" aria-pressed="false">Dès 1 300 € ou moins</button>
 </div>
 
 <main class="grid" id="grid">
   <article class="card pick" data-id="djerba" data-name="Djerba" data-tags="chaud thalasso budget">
-    <div class="photo" style="--c:#c9a46b"><img src="https://pix8.agoda.net/hotelImages/233967/0/a9622d36695f5b481d860e90ef9673a4.jpeg?fx=0.45&s=600x400" alt="Hasdrubal Prestige Thalassa &amp; Spa" onerror="this.remove()"><span class="tag">Notre coup de cœur</span></div>
+    <div class="photo" style="--c:#c9a46b"><img src="https://pix8.agoda.net/hotelImages/233967/0/a9622d36695f5b481d860e90ef9673a4.jpeg?fx=0.45&s=600x400" alt="" onerror="this.remove()"><span class="tag">Notre coup de cœur</span></div>
     <div class="body">
-      <div class="place">Tunisie · 2&nbsp;h&nbsp;55 de vol · même heure qu'à Paris</div>
-      <h2>Djerba<span class="new">nouveau</span></h2>
-      <p class="pitch">La vraie thalasso tunisienne, au calme sur la plage. Le meilleur rapport qualité-prix de la liste.</p>
+      <div class="place">Tunisie · 2&nbsp;h&nbsp;55 de vol · même heure</div>
+      <h2>Djerba</h2>
+      <p class="pitch">La vraie thalasso tunisienne, au calme sur la plage. Le meilleur rapport qualité-prix.</p>
       <div class="facts">
         <div class="fact warm"><span>Air</span><b>≈ 22 °C</b></div>
         <div class="fact cool"><span>Mer</span><b>≈ 21 °C</b></div>
       </div>
-      <div class="hotel"><strong>Hasdrubal Prestige Thalassa &amp; Spa</strong><small>5★ · 9,2/10 (522 avis) · du 9 au 13 nov.</small></div>
-      <ul class="lines"><li><span><a href="https://www.price.win/go/_4pMrOyMwrr" target="_blank" rel="noopener">Hôtel, 4 nuits</a></span><span>625 €</span></li><li><span><a href="https://kiwi.com/u/qp7urz" target="_blank" rel="noopener">Vols A/R à deux, depuis Orly</a></span><span>304 – 359 €</span></li></ul>
-      <p class="pitch" style="min-height:0;font-size:13px">Variante : Radisson Blu Athénée Palace &amp; Thalasso, 9,2/10 (2 903 avis), 863 € → total ≈ 1 170 – 1 220 €</p>
-      <div class="pc"><p class="plus">+ Le moins cher au soleil, très bien noté, départ d'Orly</p><p class="moins">− Un peu moins chaud qu'Agadir</p></div>
-      <div class="total"><span>Total à deux</span><b>≈ 930 – 990 €</b></div>
+      <div class="sub">Transport · 9 → 13 nov.</div>
+      <p class="fl"><span><a href="https://kiwi.com/u/qp7urz" target="_blank" rel="noopener">Vols Orly, Transavia</a></span><span>304 – 359 €</span></p>
+      <div class="sub">Hôtels · total voyage à deux</div>
+      <ul class="hl"><li><a href="https://www.price.win/go/CpuSw_hOskh" target="_blank" rel="noopener">Ulysse Djerba Thalasso &amp; Spa</a>
+          <span class="p" style="grid-row:span 2"><b>831 – 886 €</b>hôtel 527 €</span>
+          <small><span class="star">8,2/10</span> (354 avis) · Le moins cher avec thalasso</small></li><li><a href="https://www.price.win/go/_4pMrOyMwrr" target="_blank" rel="noopener">Hasdrubal Prestige Thalassa &amp; Spa</a>
+          <span class="p" style="grid-row:span 2"><b>929 – 984 €</b>hôtel 625 €</span>
+          <small>5★ · <span class="star">9,2/10</span> (522 avis) · Vraie thalasso, plage de Sidi Mehrez</small></li><li><a href="https://www.price.win/go/S98zAehgl0d" target="_blank" rel="noopener">Radisson Blu Athénée Palace &amp; Thalasso</a>
+          <span class="p" style="grid-row:span 2"><b>1 167 – 1 222 €</b>hôtel 863 €</span>
+          <small>5★ · <span class="star">9,2/10</span> (2 903 avis) · Très grand nombre d'avis, thalasso</small></li></ul>
+      <div class="pc"><p class="plus">+ Trois thalassos bien notées, départ d'Orly</p><p class="moins">− Un peu moins chaud qu'Agadir</p></div>
+      <div class="total"><span>À partir de</span><b>831 €</b></div>
       <div class="votes">
         <button class="vote" data-who="simon" aria-pressed="false">Simon ♥</button>
         <button class="vote" data-who="sonya" aria-pressed="false">Sonya ♥</button>
@@ -145,62 +166,25 @@
     </div>
   </article>
   <article class="card" data-id="agadir" data-name="Agadir" data-tags="chaud thalasso budget">
-    <div class="photo" style="--c:#c98a5b"><img src="https://ak-d.tripcdn.com/images/0203j120009278z7uFE5F_R_300_600_R5_Q50_D.jpg" alt="Sofitel Agadir Thalassa Sea &amp; Spa" onerror="this.remove()"><span class="tag alt">Le plus chaud</span></div>
+    <div class="photo" style="--c:#c98a5b"><img src="https://ak-d.tripcdn.com/images/0203j120009278z7uFE5F_R_300_600_R5_Q50_D.jpg" alt="" onerror="this.remove()"><span class="tag alt">Le plus chaud</span></div>
     <div class="body">
-      <div class="place">Maroc · 3&nbsp;h de vol · même heure qu'à Paris</div>
+      <div class="place">Maroc · 3&nbsp;h de vol · même heure</div>
       <h2>Agadir</h2>
       <p class="pitch">Le chaud <em>et</em> une grande thalasso, au bord d'une immense plage.</p>
       <div class="facts">
         <div class="fact warm"><span>Air</span><b>≈ 25 °C</b></div>
         <div class="fact cool"><span>Mer</span><b>≈ 20 °C</b></div>
       </div>
-      <div class="hotel"><strong>Sofitel Agadir Thalassa Sea &amp; Spa</strong><small>5★ · 8,7/10 (556 avis) · du 10 au 14 nov.</small></div>
-      <ul class="lines"><li><span><a href="https://www.price.win/go/8tl8SLfyJ6i" target="_blank" rel="noopener">Hôtel, 4 nuits</a></span><span>1 235 €</span></li><li><span><a href="https://kiwi.com/u/my23u4" target="_blank" rel="noopener">Vols A/R à deux</a></span><span>321 – 419 €</span></li></ul>
-      
-      <div class="pc"><p class="plus">+ Soleil, plage et soins au même endroit</p><p class="moins">− Vol le moins cher depuis Beauvais, retour à 6&nbsp;h</p></div>
-      <div class="total"><span>Total à deux</span><b>≈ 1 560 – 1 650 €</b></div>
-      <div class="votes">
-        <button class="vote" data-who="simon" aria-pressed="false">Simon ♥</button>
-        <button class="vote" data-who="sonya" aria-pressed="false">Sonya ♥</button>
-      </div>
-    </div>
-  </article>
-  <article class="card" data-id="tenerife" data-name="Ténérife" data-tags="chaud">
-    <div class="photo" style="--c:#2f6f73"><span class="noimg">Ténérife</span></div>
-    <div class="body">
-      <div class="place">Canaries · 4&nbsp;h&nbsp;20 de vol · −1&nbsp;h</div>
-      <h2>Ténérife</h2>
-      <p class="pitch">Le plus « plage et soleil », avec la mer la plus chaude. Hôtel spa à choisir.</p>
-      <div class="facts">
-        <div class="fact warm"><span>Air</span><b>≈ 24 °C</b></div>
-        <div class="fact cool"><span>Mer</span><b>≈ 22 °C</b></div>
-      </div>
-      <div class="hotel"><strong>Un 5★ avec spa à Costa Adeje</strong><small>Prix pas encore relevé · du 9 au 13 nov.</small></div>
-      <ul class="lines"><li><span>Hôtel, 4 nuits</span><span>≈ 1 000 – 1 800 €*</span></li><li><span><a href="https://kiwi.com/u/gmmqj9" target="_blank" rel="noopener">Vols A/R à deux, depuis Orly</a></span><span>686 €</span></li></ul>
-      
-      <div class="pc"><p class="plus">+ Vols directs depuis Orly, baignade garantie</p><p class="moins">− Spa d'hôtel, pas une vraie thalasso</p></div>
-      <div class="total"><span>Total à deux</span><b>≈ 1 700 – 2 500 €</b></div>
-      <div class="votes">
-        <button class="vote" data-who="simon" aria-pressed="false">Simon ♥</button>
-        <button class="vote" data-who="sonya" aria-pressed="false">Sonya ♥</button>
-      </div>
-    </div>
-  </article>
-  <article class="card" data-id="lanzarote" data-name="Lanzarote" data-tags="chaud">
-    <div class="photo" style="--c:#8a5a44"><img src="https://ak-d.tripcdn.com/images/0584y12000suncbc3355C_R_300_600_R5_Q50_D.jpg" alt="Princesa Yaiza Suite Hotel Resort" onerror="this.remove()"></div>
-    <div class="body">
-      <div class="place">Canaries · 4&nbsp;h de vol · −1&nbsp;h</div>
-      <h2>Lanzarote<span class="new">nouveau</span></h2>
-      <p class="pitch">Paysages volcaniques, criques de sable blond et un resort de suites très bien noté.</p>
-      <div class="facts">
-        <div class="fact warm"><span>Air</span><b>≈ 24 °C</b></div>
-        <div class="fact cool"><span>Mer</span><b>≈ 22 °C</b></div>
-      </div>
-      <div class="hotel"><strong>Princesa Yaiza Suite Hotel Resort</strong><small>5★ · 9,4/10 (576 avis) · du 9 au 13 nov.</small></div>
-      <ul class="lines"><li><span><a href="https://www.price.win/go/JFJP6kuMwF1" target="_blank" rel="noopener">Hôtel, 4 nuits</a></span><span>1 608 €</span></li><li><span><a href="https://kiwi.com/u/7suw347" target="_blank" rel="noopener">Vols A/R à deux, depuis Orly</a></span><span>766 €</span></li></ul>
-      
-      <div class="pc"><p class="plus">+ Grandes suites, plages de Papagayo à côté</p><p class="moins">− Cher, spa d'hôtel et pas une thalasso</p></div>
-      <div class="total"><span>Total à deux</span><b>≈ 2 375 €</b></div>
+      <div class="sub">Transport · 10 → 14 nov.</div>
+      <p class="fl"><span><a href="https://kiwi.com/u/my23u4" target="_blank" rel="noopener">Vols Beauvais/Orly</a></span><span>321 – 419 €</span></p>
+      <div class="sub">Hôtels · total voyage à deux</div>
+      <ul class="hl"><li><a href="https://www.price.win/go/SGnEIDgEy8G" target="_blank" rel="noopener">Tildi Hotel &amp; Spa</a>
+          <span class="p" style="grid-row:span 2"><b>649 – 747 €</b>hôtel 328 €</span>
+          <small>4★ · <span class="star">8,3/10</span> (2 413 avis) · Spa d'hôtel, petit prix</small></li><li><a href="https://www.price.win/go/8tl8SLfyJ6i" target="_blank" rel="noopener">Sofitel Agadir Thalassa Sea &amp; Spa</a>
+          <span class="p" style="grid-row:span 2"><b>1 556 – 1 654 €</b>hôtel 1 235 €</span>
+          <small>5★ · <span class="star">8,7/10</span> (556 avis) · Grande thalasso au bord de la plage</small></li></ul>
+      <div class="pc"><p class="plus">+ Le plus de soleil</p><p class="moins">− Vol le moins cher depuis Beauvais</p></div>
+      <div class="total"><span>À partir de</span><b>649 €</b></div>
       <div class="votes">
         <button class="vote" data-who="simon" aria-pressed="false">Simon ♥</button>
         <button class="vote" data-who="sonya" aria-pressed="false">Sonya ♥</button>
@@ -208,41 +192,101 @@
     </div>
   </article>
   <article class="card" data-id="madere" data-name="Madère" data-tags="chaud">
-    <div class="photo" style="--c:#5d7d4f"><img src="https://q-xx.bstatic.com/xdata/images/hotel/max300/211582736.jpg?k=f28a07a5fd480e4d4d619ba391244859d47e71cd3c69f8ca5e003b43a6f193dc&o=" alt="Savoy Palace, Funchal" onerror="this.remove()"></div>
+    <div class="photo" style="--c:#5d7d4f"><img src="https://ak-d.tripcdn.com/images/0225z12000kwfvpgp947C_R_300_600_R5_Q50_D.jpg" alt="" onerror="this.remove()"></div>
     <div class="body">
       <div class="place">Portugal · 3&nbsp;h&nbsp;50 de vol · −1&nbsp;h</div>
       <h2>Madère</h2>
-      <p class="pitch">L'option luxe : une île verte, un palace très bien noté et un très beau spa.</p>
+      <p class="pitch">Une île verte et belle, des hôtels Pestana avec vue sur l'océan et un vrai spa.</p>
       <div class="facts">
         <div class="fact warm"><span>Air</span><b>≈ 22 °C</b></div>
         <div class="fact cool"><span>Mer</span><b>≈ 21 °C</b></div>
       </div>
-      <div class="hotel"><strong>Savoy Palace, Funchal</strong><small>5★ · 9,6/10 (1 224 avis) · du 10 au 14 nov.</small></div>
-      <ul class="lines"><li><span><a href="https://www.price.win/go/YU0C0FIzHVa" target="_blank" rel="noopener">Hôtel, 4 nuits</a></span><span>2 090 €</span></li><li><span><a href="https://kiwi.com/u/3fv3bh" target="_blank" rel="noopener">Vols A/R à deux</a></span><span>766 €</span></li></ul>
-      
-      <div class="pc"><p class="plus">+ Le plus bel hôtel, balades magnifiques</p><p class="moins">− Baignade surtout en piscine, le plus cher</p></div>
-      <div class="total"><span>Total à deux</span><b>≈ 2 860 €</b></div>
+      <div class="sub">Transport · 10 → 14 nov.</div>
+      <p class="fl"><span><a href="https://kiwi.com/u/3fv3bh" target="_blank" rel="noopener">Vols Roissy, easyJet</a></span><span>766 €</span></p>
+      <div class="sub">Hôtels · total voyage à deux</div>
+      <ul class="hl"><li><a href="https://www.price.win/go/vWF3l19PBSi" target="_blank" rel="noopener">Pestana Casino Park Ocean &amp; Spa</a>
+          <span class="p" style="grid-row:span 2"><b>1 342 €</b>hôtel 576 €</span>
+          <small>5★ · <span class="star">8,9/10</span> (1 001 avis) · Jardins, vue océan, à pied de Funchal</small></li><li><a href="https://www.price.win/go/ugS8XcmADmC" target="_blank" rel="noopener">Pestana Royal Ocean &amp; Spa, tout compris</a>
+          <span class="p" style="grid-row:span 2"><b>1 713 €</b>hôtel 947 €</span>
+          <small>5★ · <span class="star">8,3/10</span> (61 avis) · Repas et boissons inclus</small></li></ul>
+      <div class="pc"><p class="plus">+ Balades magnifiques, option tout compris</p><p class="moins">− Baignade surtout en piscine</p></div>
+      <div class="total"><span>À partir de</span><b>1 342 €</b></div>
       <div class="votes">
         <button class="vote" data-who="simon" aria-pressed="false">Simon ♥</button>
         <button class="vote" data-who="sonya" aria-pressed="false">Sonya ♥</button>
       </div>
     </div>
   </article>
-  <article class="card" data-id="antalya" data-name="Antalya" data-tags="chaud budget">
-    <div class="photo" style="--c:#3d6a8a"><span class="noimg">Antalya</span></div>
+  <article class="card" data-id="lanzarote" data-name="Lanzarote" data-tags="chaud budget">
+    <div class="photo" style="--c:#8a5a44"><img src="https://pix8.agoda.net/hotelImages/179597/0/c399836c812daebf13901270bc17aaf5.jpeg?s=600x400" alt="" onerror="this.remove()"></div>
+    <div class="body">
+      <div class="place">Canaries · 4&nbsp;h de vol · −1&nbsp;h</div>
+      <h2>Lanzarote</h2>
+      <p class="pitch">Paysages volcaniques, criques de sable blond, mer encore douce.</p>
+      <div class="facts">
+        <div class="fact warm"><span>Air</span><b>≈ 24 °C</b></div>
+        <div class="fact cool"><span>Mer</span><b>≈ 22 °C</b></div>
+      </div>
+      <div class="sub">Transport · 9 → 13 nov.</div>
+      <p class="fl"><span><a href="https://kiwi.com/u/7suw347" target="_blank" rel="noopener">Vols Orly, Transavia</a></span><span>766 €</span></p>
+      <div class="sub">Hôtels · total voyage à deux</div>
+      <ul class="hl"><li><a href="https://www.price.win/go/IOc_8cLLZAg" target="_blank" rel="noopener">Aparthotel Costa Volcán &amp; Spa</a>
+          <span class="p" style="grid-row:span 2"><b>1 178 €</b>hôtel 412 €</span>
+          <small>4★ · <span class="star">8,3/10</span> (999 avis) · Puerto del Carmen, près de la plage</small></li><li><a href="https://www.price.win/go/rntWDALx2_u" target="_blank" rel="noopener">Arrecife Gran Hotel &amp; Spa</a>
+          <span class="p" style="grid-row:span 2"><b>1 383 €</b>hôtel 617 €</span>
+          <small>5★ · <span class="star">9,0/10</span> (1 002 avis) · Tour face à la mer, en ville</small></li></ul>
+      <div class="pc"><p class="plus">+ Soleil quasi garanti</p><p class="moins">− Spa d'hôtel, pas une thalasso</p></div>
+      <div class="total"><span>À partir de</span><b>1 178 €</b></div>
+      <div class="votes">
+        <button class="vote" data-who="simon" aria-pressed="false">Simon ♥</button>
+        <button class="vote" data-who="sonya" aria-pressed="false">Sonya ♥</button>
+      </div>
+    </div>
+  </article>
+  <article class="card" data-id="tenerife" data-name="Ténérife" data-tags="chaud">
+    <div class="photo" style="--c:#2f6f73"><img src="https://pix8.agoda.net/hotelImages/144/144873/144873_16042916350041931330.jpg?fx=0.45&ca=6&ce=1&s=600x400" alt="" onerror="this.remove()"></div>
+    <div class="body">
+      <div class="place">Canaries · 4&nbsp;h&nbsp;20 de vol · −1&nbsp;h</div>
+      <h2>Ténérife</h2>
+      <p class="pitch">Un des plus beaux spas des Canaries, dans un grand jardin tropical.</p>
+      <div class="facts">
+        <div class="fact warm"><span>Air</span><b>≈ 24 °C</b></div>
+        <div class="fact cool"><span>Mer</span><b>≈ 22 °C</b></div>
+      </div>
+      <div class="sub">Transport · 9 → 13 nov.</div>
+      <p class="fl"><span><a href="https://kiwi.com/u/gmmqj9" target="_blank" rel="noopener">Vols Orly</a></span><span>686 €</span></p>
+      <div class="sub">Hôtels · total voyage à deux</div>
+      <ul class="hl"><li><a href="https://www.price.win/go/CwxaDx5GCpW" target="_blank" rel="noopener">Hotel Botánico &amp; The Oriental Spa Garden</a>
+          <span class="p" style="grid-row:span 2"><b>1 770 €</b>hôtel 1 084 €</span>
+          <small>5★ · <span class="star">9,3/10</span> (1 120 avis) · Spa thaï réputé, nord de l'île (Puerto de la Cruz)</small></li></ul>
+      <div class="pc"><p class="plus">+ Spa exceptionnel, 9,3/10</p><p class="moins">− Nord de l'île, plus nuageux ; juste sous le budget</p></div>
+      <div class="total"><span>À partir de</span><b>1 770 €</b></div>
+      <div class="votes">
+        <button class="vote" data-who="simon" aria-pressed="false">Simon ♥</button>
+        <button class="vote" data-who="sonya" aria-pressed="false">Sonya ♥</button>
+      </div>
+    </div>
+  </article>
+  <article class="card" data-id="antalya" data-name="Antalya" data-tags="chaud">
+    <div class="photo" style="--c:#3d6a8a"><img src="https://cf.bstatic.com/xdata/images/hotel/max500/303216106.jpg?k=73b862ebc890650496ce3553f2f42cf0338fed63fd0c731b3eec6f8575d89407&o=" alt="" onerror="this.remove()"></div>
     <div class="body">
       <div class="place">Turquie · 4&nbsp;h de vol · +2&nbsp;h</div>
-      <h2>Antalya<span class="new">nouveau</span></h2>
-      <p class="pitch">Les grands resorts tout compris de Belek, avec hammam et spa. Pour se laisser vivre.</p>
+      <h2>Antalya</h2>
+      <p class="pitch">Les grands resorts tout compris, avec hammam et spa. Pour se laisser vivre.</p>
       <div class="facts">
         <div class="fact warm"><span>Air</span><b>≈ 21 °C</b></div>
         <div class="fact cool"><span>Mer</span><b>≈ 22 °C</b></div>
       </div>
-      <div class="hotel"><strong>Un 5★ tout compris avec spa à Belek</strong><small>Prix pas encore relevé · du 9 au 13 nov.</small></div>
-      <ul class="lines"><li><span>Hôtel tout compris, 4 nuits</span><span>≈ 600 – 1 200 €*</span></li><li><span><a href="https://kiwi.com/u/3pm3b8" target="_blank" rel="noopener">Vols A/R à deux, depuis Roissy</a></span><span>675 €</span></li></ul>
-      
-      <div class="pc"><p class="plus">+ Tout compris : repas et boissons inclus</p><p class="moins">− Arrivée à 23&nbsp;h le premier soir, fin de saison</p></div>
-      <div class="total"><span>Total à deux</span><b>≈ 1 275 – 1 875 €</b></div>
+      <div class="sub">Transport · 9 → 13 nov.</div>
+      <p class="fl"><span><a href="https://kiwi.com/u/3pm3b8" target="_blank" rel="noopener">Vols Roissy, SunExpress</a></span><span>675 €</span></p>
+      <div class="sub">Hôtels · total voyage à deux</div>
+      <ul class="hl"><li><a href="https://www.price.win/go/zxhqjdmODji" target="_blank" rel="noopener">Aska Lara Resort &amp; Spa, tout compris</a>
+          <span class="p" style="grid-row:span 2"><b>1 565 €</b>hôtel 890 €</span>
+          <small>5★ · <span class="star">8,4/10</span> (528 avis) · Plage de Lara, tout compris</small></li><li><a href="https://www.price.win/go/-8lDCeTrFCG" target="_blank" rel="noopener">Aydinbey Queen's Palace &amp; Spa, ultra tout compris</a>
+          <span class="p" style="grid-row:span 2"><b>1 588 €</b>hôtel 913 €</span>
+          <small>5★ · <span class="star">8,2/10</span> (776 avis) · Belek, ultra tout compris</small></li></ul>
+      <div class="pc"><p class="plus">+ Repas et boissons inclus</p><p class="moins">− Arrivée à 23&nbsp;h le premier soir</p></div>
+      <div class="total"><span>À partir de</span><b>1 565 €</b></div>
       <div class="votes">
         <button class="vote" data-who="simon" aria-pressed="false">Simon ♥</button>
         <button class="vote" data-who="sonya" aria-pressed="false">Sonya ♥</button>
@@ -250,20 +294,27 @@
     </div>
   </article>
   <article class="card" data-id="quiberon" data-name="Quiberon" data-tags="thalasso budget">
-    <div class="photo" style="--c:#6f8794"><img src="https://pix8.agoda.net/hotelImages/830/830611/830611_18010918060060941842.jpg?ca=6&ce=1&s=600x400" alt="Sofitel Quiberon Thalassa Sea &amp; Spa" onerror="this.remove()"></div>
+    <div class="photo" style="--c:#6f8794"><img src="https://pix8.agoda.net/hotelImages/830/830611/830611_18010918060060941842.jpg?ca=6&ce=1&s=600x400" alt="" onerror="this.remove()"></div>
     <div class="body">
       <div class="place">Bretagne · train jusqu'à Auray · pas d'avion</div>
       <h2>Quiberon</h2>
-      <p class="pitch">La thalasso de référence en France. Pas de soleil garanti, mais zéro fatigue de voyage.</p>
+      <p class="pitch">La thalasso à la française. Pas de soleil garanti, mais zéro fatigue de voyage.</p>
       <div class="facts">
         <div class="fact"><span>Air</span><b>≈ 12 °C</b></div>
         <div class="fact cool"><span>Mer</span><b>≈ 13 °C</b></div>
       </div>
-      <div class="hotel"><strong>Sofitel Quiberon Thalassa Sea &amp; Spa</strong><small>5★ · 8,8/10 (491 avis) · du 10 au 14 nov.</small></div>
-      <ul class="lines"><li><span><a href="https://www.price.win/go/ybQ96SVk8gS" target="_blank" rel="noopener">Hôtel, 4 nuits</a></span><span>965 €</span></li><li><span>Train A/R à deux</span><span>≈ 150 – 250 €*</span></li></ul>
-      
+      <div class="sub">Transport · 10 → 14 nov.</div>
+      <p class="fl"><span>Train A/R à deux</span><span>≈ 150 – 250 €*</span></p>
+      <div class="sub">Hôtels · total voyage à deux</div>
+      <ul class="hl"><li><a href="https://www.price.win/go/7lkug_7Cncs" target="_blank" rel="noopener">Castel Clara Thalasso &amp; Spa</a>
+          <span class="p" style="grid-row:span 2"><b>1 042 – 1 142 €</b>hôtel 892 €</span>
+          <small><span class="star">9,0/10</span> (91 avis) · À Belle-Île, ferry depuis Quiberon</small></li><li><a href="https://www.price.win/go/ybQ96SVk8gS" target="_blank" rel="noopener">Sofitel Quiberon Thalassa Sea &amp; Spa</a>
+          <span class="p" style="grid-row:span 2"><b>1 115 – 1 215 €</b>hôtel 965 €</span>
+          <small>5★ · <span class="star">8,8/10</span> (491 avis) · La thalasso de référence</small></li><li><a href="https://www.price.win/go/tqUUcr4cmc6" target="_blank" rel="noopener">Miramar La Cigale Thalasso &amp; Spa</a>
+          <span class="p" style="grid-row:span 2"><b>1 253 – 1 353 €</b>hôtel 1 103 €</span>
+          <small><span class="star">9,2/10</span> (201 avis) · Le mieux noté de Quiberon</small></li></ul>
       <div class="pc"><p class="plus">+ Le plus reposant, sans avion</p><p class="moins">− Pas du tout au chaud</p></div>
-      <div class="total"><span>Total à deux</span><b>≈ 1 100 – 1 250 €</b></div>
+      <div class="total"><span>À partir de</span><b>1 042 €</b></div>
       <div class="votes">
         <button class="vote" data-who="simon" aria-pressed="false">Simon ♥</button>
         <button class="vote" data-who="sonya" aria-pressed="false">Sonya ♥</button>
@@ -281,14 +332,12 @@
 </section>
 
 <div class="notes">
-  <p><strong>Prix relevés le 19 octobre 2026</strong> pour deux personnes. Ils bougent tous les jours : rien n'est réservé.</p>
-  <p>Les prix d'hôtel sont souvent pour la chambre seule. Les soins de thalasso se paient en plus : compter 300 à 600 € pour un forfait à deux.</p>
-  <p>Vols sans escale, en tarif de base : bagage cabine et soute en supplément.</p>
-  <p>Températures : moyennes de saison à la mi-novembre, pas une prévision météo.</p>
-  <p>* Estimation, pas un prix relevé.</p>
-  <p>Écartés : Chypre (vols à plus de 1 100 €), Égypte (vols à 925 €), Marrakech (pas de mer).</p>
+  <p><strong>Prix relevés le 19 octobre 2026</strong> pour deux personnes, convertis depuis le dollar. Ils bougent tous les jours : rien n'est réservé.</p>
+  <p>Total = vols ou train + hôtel 4 nuits. Les hôtels sont souvent en chambre seule, sauf les « tout compris ». Les soins de thalasso se paient en plus : compter 300 à 600 € pour un forfait à deux.</p>
+  <p>Vols sans escale, tarif de base : bagage cabine et soute en supplément.</p>
+  <p>Températures : moyennes de saison à la mi-novembre, pas une prévision. * Estimation, pas un prix relevé. Belle-Île : ferry en plus.</p>
+  <p>Écartés car hors budget : Savoy Palace à Madère, Princesa Yaiza à Lanzarote, Chypre, Égypte.</p>
 </div>
-
 </div>
 
 <script>
