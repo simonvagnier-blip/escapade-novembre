@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Escapade de novembre — Simon & Sonya</title>
+<style>
+  :root{
+    --sand:#f6efe4; --paper:#fffaf3; --ink:#2b2420; --muted:#7a6d62;
+    --line:#e6dccd; --sun:#d9663a; --sun-soft:#f7dccd; --sea:#2f6f73; --sea-soft:#d8ebe9;
+    --radius:14px;
+    --serif: "Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans: "Segoe UI","Helvetica Neue",Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{background:var(--sand)}
+  body{margin:0;color:var(--ink);font-family:var(--sans);line-height:1.5;background:var(--sand)}
+  .wrap{max-width:1180px;margin:0 auto;padding:40px 22px 70px}
+  header{display:grid;grid-template-columns:1.3fr 1fr;gap:36px;align-items:end;margin-bottom:34px}
+  .kicker{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--sun);font-weight:600}
+  h1{font-family:var(--serif);font-weight:500;font-size:clamp(38px,6vw,64px);line-height:1.02;margin:10px 0 14px;text-wrap:balance}
+  h1 em{font-style:italic;color:var(--sun)}
+  .lede{font-size:17px;color:var(--muted);max-width:52ch;margin:0;text-wrap:pretty}
+  .week{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 14px}
+  .week h3{margin:0 0 12px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .days{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+  .day{text-align:center;border-radius:10px;padding:8px 0 6px;font-size:12px;color:var(--muted);background:#fff;border:1px solid var(--line)}
+  .day b{display:block;font-size:19px;color:var(--ink);font-family:var(--serif);font-weight:500}
+  .day.off{background:var(--sun-soft);border-color:#efc2ad}
+  .day.off b{color:var(--sun)}
+  .day.trip{outline:2px solid var(--sea);outline-offset:-2px}
+  .week p{margin:10px 0 0;font-size:13px;color:var(--muted)}
+  .week p strong{color:var(--sun)}
+
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+  .chip{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:10px 16px;border-radius:999px;cursor:pointer;min-height:44px}
+  .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .chip:focus-visible,.vote:focus-visible,a:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;align-items:stretch}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;transition:opacity .25s, transform .25s}
+  .card.dim{opacity:.35;transform:scale(.985)}
+  .card.pick{border:2px solid var(--sun);box-shadow:0 14px 34px -18px rgba(217,102,58,.55)}
+  .photo{height:150px;background:var(--c, #c9b9a3);position:relative}
+  .photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .photo .tag{position:absolute;left:12px;top:12px;background:var(--sun);color:#fff;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+  .photo .noimg{position:absolute;inset:0;display:flex;align-items:flex-end;padding:14px;font-family:var(--serif);font-style:italic;color:#fff;font-size:22px}
+  .body{padding:18px 18px 16px;display:flex;flex-direction:column;flex:1}
+  .place{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  h2{font-family:var(--serif);font-weight:500;font-size:28px;line-height:1.1;margin:4px 0 6px}
+  .pitch{margin:0 0 14px;font-size:15px;color:var(--muted);min-height:3em}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 14px}
+  .fact{background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+  .fact span{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .fact b{font-family:var(--serif);font-weight:500;font-size:20px}
+  .fact.warm b{color:var(--sun)} .fact.cool b{color:var(--sea)}
+  .hotel{border-top:1px solid var(--line);padding-top:12px;margin-bottom:10px}
+  .hotel strong{display:block;font-size:15px}
+  .hotel small{color:var(--muted);font-size:13px}
+  ul.lines{list-style:none;padding:0;margin:0 0 12px;font-size:14px}
+  ul.lines li{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px dashed var(--line)}
+  ul.lines li span:last-child{white-space:nowrap;font-variant-numeric:tabular-nums}
+  ul.lines a{color:var(--sea)}
+  .total{margin-top:auto;display:flex;align-items:baseline;justify-content:space-between;padding:12px 0 4px}
+  .total span{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .total b{font-family:var(--serif);font-weight:500;font-size:30px}
+  .pc{font-size:14px;margin:6px 0 14px}
+  .pc p{margin:0 0 4px}
+  .pc .plus{color:var(--sea)} .pc .moins{color:#a2533a}
+  .votes{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .vote{font:inherit;font-size:14px;min-height:44px;border-radius:10px;border:1px solid var(--line);background:#fff;cursor:pointer;color:var(--ink)}
+  .vote[aria-pressed="true"]{background:var(--sun);border-color:var(--sun);color:#fff}
+
+  .verdict{margin:30px 0 0;display:grid;grid-template-columns:1fr 1.2fr;gap:24px;background:var(--ink);color:var(--paper);border-radius:var(--radius);padding:28px}
+  .verdict h3{font-family:var(--serif);font-weight:500;font-size:30px;margin:0 0 8px}
+  .verdict p{margin:0;color:#d8cfc4}
+  #match{font-family:var(--serif);font-size:22px;line-height:1.3;color:#fff;align-self:center}
+  .notes{margin-top:26px;font-size:13px;color:var(--muted);columns:2;column-gap:32px}
+  .notes p{margin:0 0 8px;break-inside:avoid}
+
+  
+  @media (max-width:720px){
+    header,.verdict{grid-template-columns:1fr}
+    .notes{columns:1}
+    .pitch{min-height:0}
+  }
+  @media (prefers-reduced-motion:reduce){.card{transition:none}}
+
+  .tag.alt{background:var(--sea)}
+  .new{display:inline-block;margin-left:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--sea);border:1px solid var(--sea);border-radius:999px;padding:1px 8px;vertical-align:middle}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div>
+    <div class="kicker">Simon &amp; Sonya · novembre 2026</div>
+    <h1>Quatre jours au <em>soleil</em>, ou les pieds dans la thalasso&nbsp;?</h1>
+    <p class="lede">Sept idées pour la deuxième semaine de novembre. Chacun vote pour ses préférées, et la page vous dit sur laquelle vous êtes d'accord.</p>
+  </div>
+  <div class="week" aria-label="Semaine du 9 au 15 novembre">
+    <h3>La semaine</h3>
+    <div class="days">
+      <div class="day trip">lun<b>9</b></div>
+      <div class="day trip">mar<b>10</b></div>
+      <div class="day off trip">mer<b>11</b></div>
+      <div class="day trip">jeu<b>12</b></div>
+      <div class="day trip">ven<b>13</b></div>
+      <div class="day">sam<b>14</b></div>
+      <div class="day">dim<b>15</b></div>
+    </div>
+    <p><strong>Le 11 novembre est férié</strong> : 4 nuits en semaine = 3 jours de congé seulement.</p>
+  </div>
+</header>
+
+<div class="filters" role="group" aria-label="Filtrer">
+  <button class="chip" data-f="all" aria-pressed="true">Tout voir</button>
+  <button class="chip" data-f="chaud" aria-pressed="false">Au chaud</button>
+  <button class="chip" data-f="thalasso" aria-pressed="false">Vraie thalasso</button>
+  <button class="chip" data-f="budget" aria-pressed="false">Moins de 2 000 €</button>
+</div>
+
+<main class="grid" id="grid">
+  <article class="card pick" data-id="djerba" data-name="Djerba" data-tags="chaud thalasso budget">
+    <div class="photo" style="--c:#c9a46b"><img src="https://pix8.agoda.net/hotelImages/233967/0/a9622d36695f5b481d860e90ef9673a4.jpeg?fx=0.45&s=600x400" alt="Hasdrubal Prestige Thalassa &amp; Spa" onerror="this.remove()"><span class="tag">Notre coup de cœur</span></div>
+    <div class="body">
+      <div class="place">Tunisie · 2&nbsp;h&nbsp;55 de vol · même heure qu'à Paris</div>
+      <h2>Djerba<span class="new">nouveau</span></h2>
+      <p class="pitch">La vraie thalasso tunisienne, au calme sur la plage. Le meilleur rapport qualité-prix de la liste.</p>
+      <div class="facts">
+        <div class="fact warm"><span>Air</span><b>≈ 22 °C</b></div>
+        <div class="fact cool"><span>Mer</span><b>≈ 21 °C</b></div>
+      </div>
+      <div class="hotel"><strong>Hasdrubal Prestige Thalassa &amp; Spa</strong><small>5★ · 9,2/10 (522 avis) · du 9 au 13 nov.</small></div>
+      <ul class="lines"><li><span><a href="https://www.price.win/go/_4pMrOyMwrr" target="_blank" rel="noopener">Hôtel, 4 nuits</a></span><span>625 €</span></li><li><span><a href="https://kiwi.com/u/qp7urz" target="_blank" rel="noopener">Vols A/R à deux, depuis Orly</a></span><span>304 – 359 €</span></li></ul>
+      <p class="pitch" style="min-height:0;font-size:13px">Variante : Radisson Blu Athénée Palace &amp; Thalasso, 9,2/10 (2 903 avis), 863 € → total ≈ 1 170 – 1 220 €</p>
+      <div class="pc"><p class="plus">+ Le moins cher au soleil, très bien noté, départ d'Orly</p><p class="moins">− Un peu moins chaud qu'Agadir</p></div>
+      <div class="total"><span>Total à deux</span><b>≈ 930 – 990 €</b></div>
+      <div class="votes">
+        <button class="vote" data-who="simon" aria-pressed="false">Simon ♥</button>
+        <button class="vote" data-who="sonya" aria-pressed="false">Sonya ♥</button>
+      </div>
+    </div>
+  </article>
+  <article class="card" data-id="agadir" data-name="Agadir" data-tags="chaud thalasso budget">
+    <div class="photo" style="--c:#c98a5b"><img src="https://ak-d.tripcdn.com/images/0203j120009278z7uFE5F_R_300_600_R5_Q50_D.jpg" alt="Sofitel Agadir Thalassa Sea &amp; Spa" onerror="this.remove()"><span class="tag alt">Le plus chaud</span></div>
+    <div class="body">
+      <div class="place">Maroc · 3&nbsp;h de vol · même heure qu'à Paris</div>
+      <h2>Agadir</h2>
+      <p class="pitch">Le chaud <em>et</em> une grande thalasso, au bord d'une immense plage.</p>
+      <div class="facts">
+        <div class="fact warm"><span>Air</span><b>≈ 25 °C</b></div>
+        <div class="fact cool"><span>Mer</span><b>≈ 20 °C</b></div>
+      </div>
+      <div class="hotel"><strong>Sofitel Agadir Thalassa Sea &amp; Spa</strong><small>5★ · 8,7/10 (556 avis) · du 10 au 14 nov.</small></div>
+      <ul class="lines"><li><span><a href="https://www.price.win/go/8tl8SLfyJ6i" target="_blank" rel="noopener">Hôtel, 4 nuits</a></span><span>1 235 €</span></li><li><span><a href="https://kiwi.com/u/my23u4" target="_blank" rel="noopener">Vols A/R à deux</a></span><span>321 – 419 €</span></li></ul>
+      
+      <div class="pc"><p class="plus">+ Soleil, plage et soins au même endroit</p><p class="moins">− Vol le moins cher depuis Beauvais, retour à 6&nbsp;h</p></div>
+      <div class="total"><span>Total à deux</span><b>≈ 1 560 – 1 650 €</b></div>
+      <div class="votes">
+        <button class="vote" data-who="simon" aria-pressed="false">Simon ♥</button>
+        <button class="vote" data-who="sonya" aria-pressed="false">Sonya ♥</button>
+      </div>
+    </div>
+  </article>
+  <article class="card" data-id="tenerife" data-name="Ténérife" data-tags="chaud">
+    <div class="photo" style="--c:#2f6f73"><span class="noimg">Ténérife</span></div>
+    <div class="body">
+      <div class="place">Canaries · 4&nbsp;h&nbsp;20 de vol · −1&nbsp;h</div>
+      <h2>Ténérife</h2>
+      <p class="pitch">Le plus « plage et soleil », avec la mer la plus chaude. Hôtel spa à choisir.</p>
+      <div class="facts">
+        <div class="fact warm"><span>Air</span><b>≈ 24 °C</b></div>
+        <div class="fact cool"><span>Mer</span><b>≈ 22 °C</b></div>
+      </div>
+      <div class="hotel"><strong>Un 5★ avec spa à Costa Adeje</strong><small>Prix pas encore relevé · du 9 au 13 nov.</small></div>
+      <ul class="lines"><li><span>Hôtel, 4 nuits</span><span>≈ 1 000 – 1 800 €*</span></li><li><span><a href="https://kiwi.com/u/gmmqj9" target="_blank" rel="noopener">Vols A/R à deux, depuis Orly</a></span><span>686 €</span></li></ul>
+      
+      <div class="pc"><p class="plus">+ Vols directs depuis Orly, baignade garantie</p><p class="moins">− Spa d'hôtel, pas une vraie thalasso</p></div>
+      <div class="total"><span>Total à deux</span><b>≈ 1 700 – 2 500 €</b></div>
+      <div class="votes">
+        <button class="vote" data-who="simon" aria-pressed="false">Simon ♥</button>
+        <button class="vote" data-who="sonya" aria-pressed="false">Sonya ♥</button>
+      </div>
+    </div>
+  </article>
+  <article class="card" data-id="lanzarote" data-name="Lanzarote" data-tags="chaud">
+    <div class="photo" style="--c:#8a5a44"><img src="https://ak-d.tripcdn.com/images/0584y12000suncbc3355C_R_300_600_R5_Q50_D.jpg" alt="Princesa Yaiza Suite Hotel Resort" onerror="this.remove()"></div>
+    <div class="body">
+      <div class="place">Canaries · 4&nbsp;h de vol · −1&nbsp;h</div>
+      <h2>Lanzarote<span class="new">nouveau</span></h2>
+      <p class="pitch">Paysages volcaniques, criques de sable blond et un resort de suites très bien noté.</p>
+      <div class="facts">
+        <div class="fact warm"><span>Air</span><b>≈ 24 °C</b></div>
+        <div class="fact cool"><span>Mer</span><b>≈ 22 °C</b></div>
+      </div>
+      <div class="hotel"><strong>Princesa Yaiza Suite Hotel Resort</strong><small>5★ · 9,4/10 (576 avis) · du 9 au 13 nov.</small></div>
+      <ul class="lines"><li><span><a href="https://www.price.win/go/JFJP6kuMwF1" target="_blank" rel="noopener">Hôtel, 4 nuits</a></span><span>1 608 €</span></li><li><span><a href="https://kiwi.com/u/7suw347" target="_blank" rel="noopener">Vols A/R à deux, depuis Orly</a></span><span>766 €</span></li></ul>
+      
+      <div class="pc"><p class="plus">+ Grandes suites, plages de Papagayo à côté</p><p class="moins">− Cher, spa d'hôtel et pas une thalasso</p></div>
+      <div class="total"><span>Total à deux</span><b>≈ 2 375 €</b></div>
+      <div class="votes">
+        <button class="vote" data-who="simon" aria-pressed="false">Simon ♥</button>
+        <button class="vote" data-who="sonya" aria-pressed="false">Sonya ♥</button>
+      </div>
+    </div>
+  </article>
+  <article class="card" data-id="madere" data-name="Madère" data-tags="chaud">
+    <div class="photo" style="--c:#5d7d4f"><img src="https://q-xx.bstatic.com/xdata/images/hotel/max300/211582736.jpg?k=f28a07a5fd480e4d4d619ba391244859d47e71cd3c69f8ca5e003b43a6f193dc&o=" alt="Savoy Palace, Funchal" onerror="this.remove()"></div>
+    <div class="body">
+      <div class="place">Portugal · 3&nbsp;h&nbsp;50 de vol · −1&nbsp;h</div>
+      <h2>Madère</h2>
+      <p class="pitch">L'option luxe : une île verte, un palace très bien noté et un très beau spa.</p>
+      <div class="facts">
+        <div class="fact warm"><span>Air</span><b>≈ 22 °C</b></div>
+        <div class="fact cool"><span>Mer</span><b>≈ 21 °C</b></div>
+      </div>
+      <div class="hotel"><strong>Savoy Palace, Funchal</strong><small>5★ · 9,6/10 (1 224 avis) · du 10 au 14 nov.</small></div>
+      <ul class="lines"><li><span><a href="https://www.price.win/go/YU0C0FIzHVa" target="_blank" rel="noopener">Hôtel, 4 nuits</a></span><span>2 090 €</span></li><li><span><a href="https://kiwi.com/u/3fv3bh" target="_blank" rel="noopener">Vols A/R à deux</a></span><span>766 €</span></li></ul>
+      
+      <div class="pc"><p class="plus">+ Le plus bel hôtel, balades magnifiques</p><p class="moins">− Baignade surtout en piscine, le plus cher</p></div>
+      <div class="total"><span>Total à deux</span><b>≈ 2 860 €</b></div>
+      <div class="votes">
+        <button class="vote" data-who="simon" aria-pressed="false">Simon ♥</button>
+        <button class="vote" data-who="sonya" aria-pressed="false">Sonya ♥</button>
+      </div>
+    </div>
+  </article>
+  <article class="card" data-id="antalya" data-name="Antalya" data-tags="chaud budget">
+    <div class="photo" style="--c:#3d6a8a"><span class="noimg">Antalya</span></div>
+    <div class="body">
+      <div class="place">Turquie · 4&nbsp;h de vol · +2&nbsp;h</div>
+      <h2>Antalya<span class="new">nouveau</span></h2>
+      <p class="pitch">Les grands resorts tout compris de Belek, avec hammam et spa. Pour se laisser vivre.</p>
+      <div class="facts">
+        <div class="fact warm"><span>Air</span><b>≈ 21 °C</b></div>
+        <div class="fact cool"><span>Mer</span><b>≈ 22 °C</b></div>
+      </div>
+      <div class="hotel"><strong>Un 5★ tout compris avec spa à Belek</strong><small>Prix pas encore relevé · du 9 au 13 nov.</small></div>
+      <ul class="lines"><li><span>Hôtel tout compris, 4 nuits</span><span>≈ 600 – 1 200 €*</span></li><li><span><a href="https://kiwi.com/u/3pm3b8" target="_blank" rel="noopener">Vols A/R à deux, depuis Roissy</a></span><span>675 €</span></li></ul>
+      
+      <div class="pc"><p class="plus">+ Tout compris : repas et boissons inclus</p><p class="moins">− Arrivée à 23&nbsp;h le premier soir, fin de saison</p></div>
+      <div class="total"><span>Total à deux</span><b>≈ 1 275 – 1 875 €</b></div>
+      <div class="votes">
+        <button class="vote" data-who="simon" aria-pressed="false">Simon ♥</button>
+        <button class="vote" data-who="sonya" aria-pressed="false">Sonya ♥</button>
+      </div>
+    </div>
+  </article>
+  <article class="card" data-id="quiberon" data-name="Quiberon" data-tags="thalasso budget">
+    <div class="photo" style="--c:#6f8794"><img src="https://pix8.agoda.net/hotelImages/830/830611/830611_18010918060060941842.jpg?ca=6&ce=1&s=600x400" alt="Sofitel Quiberon Thalassa Sea &amp; Spa" onerror="this.remove()"></div>
+    <div class="body">
+      <div class="place">Bretagne · train jusqu'à Auray · pas d'avion</div>
+      <h2>Quiberon</h2>
+      <p class="pitch">La thalasso de référence en France. Pas de soleil garanti, mais zéro fatigue de voyage.</p>
+      <div class="facts">
+        <div class="fact"><span>Air</span><b>≈ 12 °C</b></div>
+        <div class="fact cool"><span>Mer</span><b>≈ 13 °C</b></div>
+      </div>
+      <div class="hotel"><strong>Sofitel Quiberon Thalassa Sea &amp; Spa</strong><small>5★ · 8,8/10 (491 avis) · du 10 au 14 nov.</small></div>
+      <ul class="lines"><li><span><a href="https://www.price.win/go/ybQ96SVk8gS" target="_blank" rel="noopener">Hôtel, 4 nuits</a></span><span>965 €</span></li><li><span>Train A/R à deux</span><span>≈ 150 – 250 €*</span></li></ul>
+      
+      <div class="pc"><p class="plus">+ Le plus reposant, sans avion</p><p class="moins">− Pas du tout au chaud</p></div>
+      <div class="total"><span>Total à deux</span><b>≈ 1 100 – 1 250 €</b></div>
+      <div class="votes">
+        <button class="vote" data-who="simon" aria-pressed="false">Simon ♥</button>
+        <button class="vote" data-who="sonya" aria-pressed="false">Sonya ♥</button>
+      </div>
+    </div>
+  </article>
+</main>
+
+<section class="verdict" aria-live="polite">
+  <div>
+    <h3>Votre verdict</h3>
+    <p>Chacun clique sur son cœur pour les destinations qui lui plaisent.</p>
+  </div>
+  <div id="match">Pas encore de votes. À vous de jouer.</div>
+</section>
+
+<div class="notes">
+  <p><strong>Prix relevés le 19 octobre 2026</strong> pour deux personnes. Ils bougent tous les jours : rien n'est réservé.</p>
+  <p>Les prix d'hôtel sont souvent pour la chambre seule. Les soins de thalasso se paient en plus : compter 300 à 600 € pour un forfait à deux.</p>
+  <p>Vols sans escale, en tarif de base : bagage cabine et soute en supplément.</p>
+  <p>Températures : moyennes de saison à la mi-novembre, pas une prévision météo.</p>
+  <p>* Estimation, pas un prix relevé.</p>
+  <p>Écartés : Chypre (vols à plus de 1 100 €), Égypte (vols à 925 €), Marrakech (pas de mer).</p>
+</div>
+
+</div>
+
+<script>
+(function(){
+  var KEY='escapade-nov-2026-votes';
+  var names={};document.querySelectorAll('.card').forEach(function(c){names[c.dataset.id]=c.dataset.name;});
+  var votes={};
+  try{votes=JSON.parse(localStorage.getItem(KEY))||{};}catch(e){votes={};}
+
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(votes));}catch(e){}}
+
+  function render(){
+    document.querySelectorAll('.card').forEach(function(card){
+      var id=card.dataset.id, v=votes[id]||{};
+      card.querySelectorAll('.vote').forEach(function(b){
+        b.setAttribute('aria-pressed', v[b.dataset.who] ? 'true':'false');
+      });
+    });
+    var both=[], one=[];
+    Object.keys(names).forEach(function(id){
+      var v=votes[id]||{};
+      if(v.simon&&v.sonya) both.push(names[id]);
+      else if(v.simon||v.sonya) one.push(names[id]);
+    });
+    var el=document.getElementById('match');
+    if(both.length===1) el.textContent='Vous êtes d\u2019accord : '+both[0]+'. Valise\u00a0!';
+    else if(both.length>1) el.textContent='Vous êtes d\u2019accord sur '+both.join(' et ')+'. Il reste à départager.';
+    else if(one.length) el.textContent='Pas encore d\u2019accord. Ça penche pour : '+one.join(', ')+'.';
+    else el.textContent='Pas encore de votes. À vous de jouer.';
+  }
+
+  document.querySelectorAll('.vote').forEach(function(b){
+    b.addEventListener('click',function(){
+      var id=b.closest('.card').dataset.id, who=b.dataset.who;
+      votes[id]=votes[id]||{};
+      votes[id][who]=!votes[id][who];
+      save(); render();
+    });
+  });
+
+  document.querySelectorAll('.chip').forEach(function(c){
+    c.addEventListener('click',function(){
+      document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed','false');});
+      c.setAttribute('aria-pressed','true');
+      var f=c.dataset.f;
+      document.querySelectorAll('.card').forEach(function(card){
+        var ok = f==='all' || card.dataset.tags.split(' ').indexOf(f)>-1;
+        card.classList.toggle('dim',!ok);
+      });
+    });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
